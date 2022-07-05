@@ -1,0 +1,97 @@
+﻿<Window x:Class="AestheticService.AppointmentEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService"
+        mc:Ignorable="d" Icon="../../Resources/1.ico"
+        Title="Редактор записей на процедуры" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        WindowState="Maximized"
+        
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource BackgroundWindows}"
+        Closed="PriemEditor_OnClosed">
+    <Window.Resources>
+        <local:DateTimeToDateConverter x:Key="myDateConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid
+            Grid.Column="1" FontSize="14" Name="AppointmentGrid" SelectionUnit="FullRow"
+            CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="False" Width="800"
+            AutoGenerateColumns="False" Background="{DynamicResource BackgroundDataGrids}"
+            SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding who_fname}"
+                    Header="Имя"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding who_sname}"
+                    Header="Фамилия"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding phone}"
+                    Header="Телефон"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                
+                <DataGridTextColumn
+                    Binding="{Binding date}"
+                    Header="Дата"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding time}"
+                    Header="Время"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding service}"
+                    Header="Услуга"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                
+                <DataGridCheckBoxColumn
+                    Binding="{Binding was}" Header="Выполнена услуга"
+                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" />
+                
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Column="0" Margin="12">
+            <Button
+                Name="Save" Width="{StaticResource ButtonWidth}"
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Margin="20,12,20,0"
+                Click="Save_OnClick"
+                Content="Сохранить" />
+            <Button
+                Name="DeleteBtn" Width="{StaticResource ButtonWidth}"
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Margin="20,12,20,0"
+                Click="DeleteBtn_OnClick"
+                Content="Удалить" />
+            <Button
+                Name="Back" Width="{StaticResource ButtonWidth}"
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Margin="20,12,20,0"
+                Click="Back_OnClick"
+                Content="Назад" />
+        </StackPanel>
+    </Grid>
+</Window>

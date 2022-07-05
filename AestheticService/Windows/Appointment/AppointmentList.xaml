@@ -1,0 +1,165 @@
+﻿<Window x:Class="AestheticService.AppointmentList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService"
+        mc:Ignorable="d" Icon="../../Resources/1.ico"
+        Title="Записи на обслуживание" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        WindowState="Maximized"
+        IsVisibleChanged="AppointmentList_OnIsVisibleChanged"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource BackgroundWindows}"
+        Closed="PriemList_OnClosed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="1"
+                  Name="AppointmentGrid"
+                  FontSize="14" AutoGenerateColumns="False" CanUserAddRows="False"
+                  SelectedCellsChanged="AppointmentGrid_OnCurrentCellChanged"
+                  SelectionUnit="FullRow" CanUserDeleteRows="False" Width="1000"
+                  IsReadOnly="True" Background="{DynamicResource BackgroundDataGrids}"
+                  SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding who_fname}"
+                    Header="Имя"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding who_sname}"
+                    Header="Фамилия"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding phone}"
+                    Header="Телефон"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding date}"
+                    Header="Дата"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding time}"
+                    Header="Время"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding service}"
+                    Header="Услуга"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridCheckBoxColumn
+                    Binding="{Binding was}" Header="Выполнена услуга" IsReadOnly="False"
+                    ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}" />
+                
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <materialDesign:DialogHost
+            Grid.Column="0" VerticalAlignment="Top"
+            IsOpen="False" Margin="12 200 12 12" CloseOnClickAway="True" Name="AddDialogHost"
+            OverlayBackground="{DynamicResource PrimaryHueDarkBrush}" DialogTheme="Inherit">
+            <StackPanel Orientation="Vertical" >
+                <TextBlock
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center"
+                    Text="Действия" />
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="AddPriem" Width="{StaticResource ButtonWidth}"
+                    Margin="0 24 0 4"
+                    Click="AddPriem_OnClick"
+                    Content="Добавить запись на сегодня" />
+
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="EditPriems" Width="{StaticResource ButtonWidth}"
+                    Margin="0 4 0 4"
+                    Height="48"
+                    Click="EditPriems_OnClick">
+                    <Button.Content>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubtitle2TextBlock}">
+                            Редактировать список
+                            <LineBreak />
+                            записей на процедуры
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="Back" Width="{StaticResource ButtonWidth}"
+                    Margin="0 24 0 4"
+                    Click="Back_OnClick"
+                    Content="Назад" />
+            </StackPanel>
+            <materialDesign:DialogHost.DialogContent>
+                <StackPanel Orientation="Vertical" Margin="12" Name="DialogContent">
+                    <TextBlock
+                        Style="{StaticResource MaterialDesignHeadline5TextBlock}" HorizontalAlignment="Center"
+                        Margin="0 4 0 4" Text="Новая запись" />
+                    <DatePicker
+                        Width="{StaticResource ButtonWidth}" Name="DatePicker"
+                        materialDesign:HintAssist.Hint="Выберите дату"
+                        Margin="0 4 0 4"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    <materialDesign:TimePicker
+                        FontSize="14" SelectedTimeFormat="Short"
+                        materialDesign:HintAssist.Hint="Выберите время"
+                        Is24Hours="True" Margin="0 4 0 4"
+                        SelectedTime="{Binding time}"
+                        x:Name="TimePicker"
+                        Width="{StaticResource ButtonWidth}"
+                        WithSeconds="False" />
+                    <ComboBox
+                        FontSize="14"
+                        Name="ServiceChoose"
+                        Width="{StaticResource ButtonWidth}"
+                        materialDesign:HintAssist.Hint="Услуга" Margin="0 4 0 4"
+                        Text="{Binding service}"
+                        IsEditable="True" />
+                    <ComboBox
+                        FontSize="14"
+                        Name="ClientNameCombo"
+                        Width="{StaticResource ButtonWidth}"
+                        materialDesign:HintAssist.Hint="Клиент" Margin="0 4 0 4"
+                        DropDownClosed="ClientNameCombo_OnSelectionChanged"
+                        IsEditable="True" />
+                    <local:MaskedTextBox Mask="Phone10Digit" materialDesign:HintAssist.Hint="Телефон" Margin="0 4 0 4"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         Text="{Binding phone}" FontSize="14" 
+                                         VerticalAlignment="Center" Width="{StaticResource ButtonWidth}">
+                    </local:MaskedTextBox>
+                    <Button
+                        Width="{StaticResource ButtonWidth}" Margin="4"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="CreateAppointmentBtn_OnClick"
+                        Content="Добавить" />
+                    <Button
+                        Width="{StaticResource ButtonWidth}" Margin="0 4 0 4"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="CancelBtn_OnClick"
+                        Content="Отмена" />
+                </StackPanel>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
+
+
+    </Grid>
+</Window>

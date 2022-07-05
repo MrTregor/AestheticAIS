@@ -1,0 +1,86 @@
+﻿<Window x:Class="AestheticService.PriceList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService"
+        mc:Ignorable="d" Icon="../../Resources/1.ico"
+        Title="Прейскурант цен" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        WindowState="Maximized"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource BackgroundWindows}"
+        Closed="PriceList_OnClosed">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 180 0 0 ">
+            
+            <StackPanel Orientation="Vertical" Margin="4">
+                <TextBlock
+                    Style="{StaticResource MaterialDesignHeadline5TextBlock}"
+                    Text="Поиск" Margin="0 0 0 14"
+                    HorizontalAlignment="Center" />
+                
+                <TextBox
+                    materialDesign:HintAssist.Hint="Услуга" Name="ServiceNameSearchText"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="{StaticResource ButtonWidth}"
+                    TextChanged="ServiceNameSearchText_OnTextChanged" Margin="4"
+                    VerticalAlignment="Center" />
+                <ComboBox
+                    materialDesign:HintAssist.Hint="Категория" Margin="4" Name="CategorySearchCombo" SelectionChanged="CategorySearchCombo_OnSelectionChanged"
+                    IsEditable="True" Width="{StaticResource ButtonWidth}" />
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedButton}" Margin="4"
+                    Width="{StaticResource ButtonWidth}" Click="SearchBtn_OnClick"
+                    Content="Искать" />
+                
+                <Button Grid.Column="0" Grid.Row="2"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Width="{StaticResource ButtonWidth}"
+                        Click="EditorBtn_OnClick" Margin="4"
+                        Content="Редактировать прейскурант цен" />
+                <Button Grid.Column="0" Grid.Row="3"
+                        Name="Back" Width="{StaticResource ButtonWidth}"
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Margin="4"
+                        Click="Back_OnClick"
+                        Content="Назад" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Column="1"
+                  Name="Preykurant" AutoGenerateColumns="False"
+                  FontSize="14" CanUserAddRows="False" Width="500" HorizontalAlignment="Left"
+                  SelectionUnit="Cell" CanUserDeleteRows="False"
+                  IsReadOnly="True" Background="{DynamicResource BackgroundDataGrids}"
+                  SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding name}"
+                    Header="Услуга"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding price}"
+                    Header="Стоимость (в рублях)"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+
+
+</Window>

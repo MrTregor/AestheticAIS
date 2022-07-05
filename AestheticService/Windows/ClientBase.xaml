@@ -1,0 +1,68 @@
+﻿<Window x:Class="AestheticService.Windows.ClientBase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource BackgroundWindows}"
+        Closed="Exit_OnClick" Icon="../../Resources/1.ico"
+        WindowState="Maximized"
+        Title="База клиентов" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock
+                Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                Text="Поиск" Margin="4" />
+            <TextBox
+                materialDesign:HintAssist.Hint="Имя" Margin="4" Name="FNameField"
+                TextChanged="SearchField_OnTextChanged"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="{StaticResource ButtonWidth}"
+                VerticalAlignment="Center" />
+            <TextBox
+                materialDesign:HintAssist.Hint="Фамилия" Margin="4" Name="SNameField"
+                TextChanged="SearchField_OnTextChanged"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="{StaticResource ButtonWidth}"
+                VerticalAlignment="Center" />
+            <TextBox
+                materialDesign:HintAssist.Hint="Телефон" Margin="4" Name="PhoneField"
+                TextChanged="SearchField_OnTextChanged"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="{StaticResource ButtonWidth}"
+                VerticalAlignment="Center" />
+        </StackPanel>
+        <DataGrid
+            Name="DataGrid" Height="540" HeadersVisibility="All" HorizontalAlignment="Center"
+            FontSize="14" AutoGenerateColumns="False" CanUserAddRows="False"
+            SelectionUnit="FullRow" CanUserDeleteRows="False" Width="500"
+            IsReadOnly="True" Background="{DynamicResource BackgroundDataGrids}"
+            SelectionMode="Extended">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding who_fname}" Header="Имя"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding who_sname}" Header="Фамилия"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <DataGridTextColumn
+                    Binding="{Binding phone}" Header="Телефон"
+                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedLightButton}"
+            Name="Back" Width="{StaticResource ButtonWidth}"
+            Margin="0 24 0 4"
+            Click="CancelBtn_OnClick"
+            Content="Назад" />
+    </StackPanel>
+</Window>

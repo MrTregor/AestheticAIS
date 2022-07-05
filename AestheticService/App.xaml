@@ -1,0 +1,50 @@
+﻿<Application x:Class="AestheticService.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:AestheticService"
+             StartupUri="MainWindow.xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="Aqua" SecondaryColor="DarkGreen" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+               
+            </ResourceDictionary.MergedDictionaries>
+            <!-- primary -->
+            <SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#E6C0BD" />
+            <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#131313" />
+            <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#b35959" />
+            <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#fcecf6" />
+            <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF" />
+            <!-- accent -->
+            <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#662929" />
+            <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#FFFFFF" />
+            <ImageBrush x:Key="BackgroundWindows" ImageSource="Resources/BackGrounds/back3.jpg" />
+            <SolidColorBrush x:Key="BackgroundDataGrids" Color="#76FDF0EF" />
+            <!-- Color="#F5F0EC" -->
+            <!-- Test color regular #fcecf6 -->
+            <!-- Test color accent #f5d3ee -->
+            <system:Double x:Key="ButtonWidth">250</system:Double>
+            <wpf:ColorsCollection x:Key="ColorsCollection">
+                <Color  A="255" R="230" G="192" B="189"  />
+                <Color A="255" R="196" G="180" B="183" />
+                <Color A="255" R="254" G="192" B="7" />
+                <Color A="255" R="96" G="125" B="138" />
+                <Color A="255" R="232" G="30" B="99" />
+                <Color A="255" R="76" G="174" B="80" />
+                <Color A="255" R="63" G="81" B="180" />
+                <Color A="255" R="204" G="219" B="57" />
+            </wpf:ColorsCollection>
+            
+            <Style TargetType="wpf:CartesianChart">
+                <Setter Property="AnimationsSpeed" Value="0:0:0.420"></Setter>
+                <Setter Property="SeriesColors" Value="{StaticResource ColorsCollection}"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

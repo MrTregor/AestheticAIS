@@ -1,0 +1,78 @@
+﻿<Window x:Class="AestheticService.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService"
+        mc:Ignorable="d" Icon="../../Resources/1.ico"
+        Title="Меню действий" Height="450" Width="800"
+
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Closed="MainWindow_OnClosed"
+        WindowState="Maximized"
+
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/BackGrounds/6.jpg" />
+    </Window.Background>
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                <!-- <TextBlock TextAlignment="Center" FontSize="20" Margin="12,12,12,12"> Добро пожаловать в программное обеспечение</TextBlock> -->
+                <TextBlock
+                    Style="{StaticResource MaterialDesignHeadline1TextBlock}"
+                    Text="Aesthetic Service" Foreground="#c36f81" FontFamily="Mellisia" HorizontalAlignment="Center" />
+                <!-- <TextBlock TextAlignment="Center" FontSize="24" Margin="12,12,12,12"> "Программный продукт для деятельности специалиста в сфере эстетических услуг"</TextBlock> -->
+                <Image Margin="12,12,12,12" Source="Resources/1.png" Width="300" Height="300" />
+                <TextBlock Margin="12,0,12,12" TextAlignment="Center" FontSize="20" Name="TodayLable" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="ToPreyskurantList"
+                    Click="ToPriceList_OnClick"
+                    Margin="4" Width="{StaticResource ButtonWidth}"
+                    Content="Прейскурант цен" />
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="ToPriemList" 
+                    Click="ToPriemList_OnClick" Width="{StaticResource ButtonWidth}"
+                    Margin="4"
+                    Content="Записи на процедуры" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="Goods"
+                    Click="Goods_OnClick" Width="{StaticResource ButtonWidth}"
+                    Margin="4"
+                    Content="Расходники для услуг" />
+                <Button
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Name="ClientBase" Margin="4"
+                    Click="ClientBase_OnClick" Width="{StaticResource ButtonWidth}"
+                    Content="База клиентов" />
+            </StackPanel>
+           
+           
+            <Button
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Name="Reports"
+                Click="Reports_OnClick"
+                Width="510"
+                Margin="4"
+                Content="Отчёты" />
+            <Button
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Name="Exit"
+                Width="{StaticResource ButtonWidth}"
+                Click="Exit_OnClick"
+                Margin="20,30,20,0"
+                Content="Выход" />
+        </StackPanel>
+    </Grid>
+</Window>

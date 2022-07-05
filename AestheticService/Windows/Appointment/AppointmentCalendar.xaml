@@ -1,0 +1,37 @@
+﻿<Window x:Class="AestheticService.AppointmentCalendar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:AestheticService"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Icon="../../Resources/1.ico"
+        Title="Записи на обслуживание" Height="450" Width="300"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource BackgroundWindows}"
+        Closed="PriemsCalendar_OnClosed">
+    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,-2,0,2">
+                <Calendar x:Name="MaterialCalendar" Language="ru-RU" Margin="-1 -4 -1 0" IsTodayHighlighted="False"
+                          SelectedDatesChanged="MaterialCalendar_OnSelectedDatesChanged" />
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="3"
+                Name="Back" Width="200"
+                Style="{StaticResource MaterialDesignRaisedLightButton}"
+                Margin="20,12,20,0"
+                Click="Back_OnClick"
+                Content="Назад" />
+    </StackPanel>
+</Window>
